@@ -34,18 +34,18 @@ function mapCharacterAttributes(originalData) {
 const fetchAndSaveCharacter = async (event) => {
     
     try {
-        const swapiUrl = 'https://swapi.py4e.com/api/people/4/'; // URL configurable
+        const swapiUrl = 'https://swapi.py4e.com/api/people/4/';
 
         const { data } = await axios.get(swapiUrl);
 
         const id = v4();
 
         // Transform the received data
-        const datosTransformados = mapCharacterAttributes(data);
+        const dataTransformed = mapCharacterAttributes(data);
                  
         const newPeople = {
             id,
-           ...datosTransformados
+           ...dataTransformed
         }
 
         const params = {
@@ -58,7 +58,7 @@ const fetchAndSaveCharacter = async (event) => {
 
         return {
             statusCode: 200,
-            body: JSON.stringify(datosTransformados),
+            body: JSON.stringify(dataTransformed),
         };
     } catch (error) {
         console.error('Error al obtener el personaje:', error);
@@ -70,5 +70,6 @@ const fetchAndSaveCharacter = async (event) => {
     
 };
 module.exports = {
-    fetchAndSaveCharacter
+    fetchAndSaveCharacter,
+    mapCharacterAttributes
 };

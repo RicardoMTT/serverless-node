@@ -8,10 +8,10 @@ const getCharacters = async(event) => {
         TableName:'PeopleTable'
     }).promise()
 
-    const personajes = result.Items || [];
+    const characters = result.Items || [];
     return {
-        status : 200,
-        body: JSON.stringify({personajes})
+        statusCode : 200,
+        body: JSON.stringify({characters})
     }
    } catch (error) {
     console.error('error',error);

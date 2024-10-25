@@ -26,18 +26,6 @@ functions:
       - httpApi:
           path: /
           method: get
-  createTask:
-    handler: src/addTask.addTask
-    events:
-      - httpApi:
-          path: /tasks
-          method: post
-  getTasks:
-    handler: src/getTasks.getTasks
-    events:
-      - httpApi:
-          path: /tasks
-          method: get
   transformData:
     handler: src/transformData.fetchAndSaveCharacter
     events:
