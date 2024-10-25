@@ -20,6 +20,14 @@ Este servicio serverless permite obtener datos de personajes de Star Wars desde 
 npm install
 ```
 
+
+
+### Pruebas unitarias
+
+```
+npm run test
+```
+
 ### Desplegar nuevos cambios
 
 ```
