@@ -11,7 +11,7 @@ Este servicio serverless permite obtener datos de personajes de Star Wars desde 
 
 - Obtiene datos de personajes desde SWAPI
 - Transforma los datos al español
-- TAlmacena la información en DynamoDB
+- Almacena la información en DynamoDB
 - Genera IDs únicos para cada registro
 
 ### Instalación
