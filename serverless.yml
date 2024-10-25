@@ -1,0 +1,78 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: tricardo003
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: prueba-node
+region: us-west-2
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:734455697935:table/TaskTable
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:734455697935:table/PeopleTable
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  createTask:
+    handler: src/addTask.addTask
+    events:
+      - httpApi:
+          path: /tasks
+          method: post
+  getTasks:
+    handler: src/getTasks.getTasks
+    events:
+      - httpApi:
+          path: /tasks
+          method: get
+  transformData:
+    handler: src/transformData.fetchAndSaveCharacter
+    events:
+      - httpApi:
+          path: /fetchAndSaveCharacter
+          method: post
+  getData:
+    handler: src/getData.getCharacters
+    events:
+      - httpApi:
+          path: /getCharacters
+          method: get
+
+
+resources:
+  Resources:
+    TaskTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: TaskTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    PeopleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: PeopleTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
