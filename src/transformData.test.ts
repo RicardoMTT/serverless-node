@@ -3,7 +3,6 @@ const AWS = require('aws-sdk');
 const { v4 } = require('uuid');
 const { fetchAndSaveCharacter } = require('./transformData');
 
-// Mock de las dependencias
 jest.mock('axios');
 jest.mock('uuid');
 jest.mock('aws-sdk', () => ({
@@ -23,11 +22,8 @@ describe('Star Wars Character Service', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         
-        // Configurar el mock de UUID
         v4.mockReturnValue('mock-uuid');
         
-    
-        // Configurar el mock de DynamoDB de manera correcta
         mockPromise = jest.fn().mockResolvedValue({});
         mockDocumentClient = new AWS.DynamoDB.DocumentClient();
         mockDocumentClient.put().promise = mockPromise;
@@ -66,13 +62,10 @@ describe('Star Wars Character Service', () => {
             expect(result.statusCode).toBe(200);
             
         });
-
-
-
     });
 
     describe('mapCharacterAttributes', () => {
-        test('should map attributes of characters successfully', () => {
+        test('Should map attributes of characters successfully', () => {
             // Arrange
             const originalData = {
                 name: 'Luke Skywalker',
@@ -118,4 +111,5 @@ describe('Star Wars Character Service', () => {
             });
         });
     });
+
 });

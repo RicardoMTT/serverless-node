@@ -42,17 +42,6 @@ functions:
 
 resources:
   Resources:
-    TaskTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: TaskTable
-        BillingMode: PAY_PER_REQUEST
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
     PeopleTable:
       Type: AWS::DynamoDB::Table
       Properties:

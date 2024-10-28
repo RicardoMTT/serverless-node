@@ -1,8 +1,6 @@
 const AWS = require('aws-sdk');
 const { getCharacters } = require('./getData'); 
 
-// Mock de AWS SDK
-// Mock más específico de AWS SDK
 jest.mock('aws-sdk', () => {
     const mockPromise = jest.fn();
     const mockScan = jest.fn().mockReturnThis();
@@ -24,13 +22,11 @@ describe('getCharacters', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         
-        // Obtener acceso a los mocks
         mockDocumentClient = new AWS.DynamoDB.DocumentClient();
         mockPromise = mockDocumentClient.promise;
     });
 
     afterEach(() => {
-        // Limpiar los mocks después de cada prueba
         jest.clearAllMocks();
     });
 

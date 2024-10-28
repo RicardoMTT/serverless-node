@@ -4,11 +4,7 @@ const axios = require('axios');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-/**
- *  Takes an object containing character data in English and maps its attributes to a new object 
- * @param {*} datosOriginales 
- * @returns 
- */
+
 function mapCharacterAttributes(originalData) {
     return {
         nombre: originalData.name,
@@ -40,7 +36,6 @@ const fetchAndSaveCharacter = async (event) => {
 
         const id = v4();
 
-        // Transform the received data
         const dataTransformed = mapCharacterAttributes(data);
                  
         const newPeople = {
@@ -54,7 +49,7 @@ const fetchAndSaveCharacter = async (event) => {
           };
 
         
-        await dynamodb.put(params).promise();// save on DynamoDB
+        await dynamodb.put(params).promise();
 
         return {
             statusCode: 200,
